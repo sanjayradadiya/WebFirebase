@@ -14,7 +14,7 @@ self.addEventListener('activate', function (event) {
 self.addEventListener('push', function (event) {
     event.waitUntil(
       self.registration.pushManager.getSubscription().then(function (subscription) {
-          var notificationsPath = 'http://localhost:11546?endpoint=' + encodeURIComponent(subscription.endpoint);
+          /*var notificationsPath = 'http://localhost:3872/WebFirebase/?endpoint=' + encodeURIComponent(subscription.endpoint);
           var headers = new Headers();
           headers.append('Accept', 'application/json');
           return fetch(notificationsPath, { headers: headers }).then(function (response) {
@@ -30,7 +30,11 @@ self.addEventListener('push', function (event) {
               });
           }).catch(function (xhr, status, error) {
               console.error('Unable to retrieve the server.', error);
-          });
+          });*/
+
+          console.log("got subscription id: ", subscription)
       })
     );
 });
+
+

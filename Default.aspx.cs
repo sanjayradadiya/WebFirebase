@@ -17,18 +17,18 @@ public partial class _Default : System.Web.UI.Page
         tRequest.ContentType = "application/json";
         var objNotification = new
         {
-            to = "fQLxHW2fzuc:APA91bEkGKWqVlmZkM_Z9rZTF5bYbytOOsHFbfg7lL1vVzb6XycWkf-0NuMSdwo7hfpSlNuVBbx7o4i-E549eVCkvBbtPEb-dohuHiKLg18ROthj6ds3QIYyZKi_dsrHBn-uNxKGOhX-",
-            data = new
+            to = "cmwf1CbB-fA:APA91bHSAlzQkgtU853DMpmaW9qQvwC-EKzmxdWPjIev59GikhHlhORWv1g1k3AIuJaPPbkrte7cxztb5Hx6vJWO_Dfs-AUKTIsj4vdDdvbtVQarUi9fOijDeoyBmDy1wUp41uBt2tFD",
+            notification = new
             {
-                body = "This is the message",
-                title = "This is the title"
+                body = "This is the message1",
+                title = "This is the title1"
             }
 
         };
         string jsonNotificationFormat = Newtonsoft.Json.JsonConvert.SerializeObject(objNotification);
         Byte[] byteArray = Encoding.UTF8.GetBytes(jsonNotificationFormat);
-        tRequest.Headers.Add(string.Format("Authorization: key={0}", "AAAA80JHkUE:APA91bG2LuMawMpo9TiWbDxbc3GBRVbERu3TyKZIbNb_jTMs5C4q_pQrjLmF5-QJFGgj3FzMthR16nFCi2qrYOlCDrPvFop1uhlqMIMEoKaJsUu7vUZjKMvwazWZFbgalKEb1uhbOCIK7YK5yotusvbwyPO60pgANw"));
-        tRequest.Headers.Add(string.Format("Sender: id={0}", "1044789039425"));
+        tRequest.Headers.Add(string.Format("Authorization: key={0}", "AAAAaGSN358:APA91bHeYq6Ywnhj4iSTEhEIr2-LQUziLJR6_ExMf-q1Y_ADM5WMLLw0CB2OK2GR5vltZq7LkrTxXYADgP-cJxXkpa6wxKCE9oFmjP6hWeEfXNOgZx-7-_ymuivxpwyxyy5s21682Xsq2GiQvG8ptt_JJJayUUxpLA"));
+        tRequest.Headers.Add(string.Format("Sender: id={0}", "448363618207"));
         tRequest.ContentLength = byteArray.Length;
         tRequest.ContentType = "application/json; charset=UTF-8";
         using (Stream dataStream = tRequest.GetRequestStream())
@@ -43,17 +43,15 @@ public partial class _Default : System.Web.UI.Page
                     {
                         String responseFromFirebaseServer = tReader.ReadToEnd();
 
-                        /*FCMResponse response = Newtonsoft.Json.JsonConvert.DeserializeObject<FCMResponse>(responseFromFirebaseServer);
+                        FCMResponse response = Newtonsoft.Json.JsonConvert.DeserializeObject<FCMResponse>(responseFromFirebaseServer);
                         if (response.success == 1)
                         {
-                            //new NotificationBLL().InsertNotificationLog(dayNumber, notification, true);
+
                         }
                         else if (response.failure == 1)
                         {
-                            //new NotificationBLL().InsertNotificationLog(dayNumber, notification, false);
-                            //sbLogger.AppendLine(string.Format("Error sent from FCM server, after sending request : {0} , for following device info: {1}", responseFromFirebaseServer, jsonNotificationFormat));
-
-                        }*/
+                            
+                        }
 
                     }
                 }
@@ -63,3 +61,15 @@ public partial class _Default : System.Web.UI.Page
 
     }
 }
+
+public class FCMResponse
+{
+    public long multicast_id { get; set; }
+    public int success { get; set; }
+    public int failure { get; set; }
+    public int canonical_ids { get; set; }
+    public List<FCMResult> results { get; set; }
+}
+
+
+public class FCMResult { }
